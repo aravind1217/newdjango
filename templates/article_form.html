@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+   
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Form</legend>
+            {{ forms|crispy }}
+        </fieldset>
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                    Submit</button>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'articles' %}" class="btn btn-secondary btn-block btn-lg">
+                    <i class="fas fa-stream"></i> Back to list
+                </a>
+            </div>
+        </div>
+    </form>
+   
+
+</div>
+{% endblock content %}

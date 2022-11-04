@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="'container">
+    <table class="table table-borderless">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <td>#</td>
+                <td>Movie</td>
+                <td>Director</td>
+                <td>Ranking</td>
+                <td>
+                    <a href="{% url 'article_insert' %}" class="btn btn-outline-success">
+                        <i class="fas fa-plus"></i> Add New
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for datas in data %}
+                <tr>
+                    <td>{{datas.id}}</td>
+                    <td>{{datas.movie}}</td>
+                    <td>{{datas.director}}</td>
+                    <td>{{datas.ranking}}</td>
+                    <td>
+                        <a href="{% url 'article_update' datas.id %}" class="btn text-secondary px-0">
+                            <i class="far fa-edit fa-lg"></i>
+                        </a>
+                        <form action="{% url 'article_delete' datas.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+{% endblock content %}
